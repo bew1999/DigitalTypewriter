@@ -6,17 +6,19 @@ import java.awt.event.*;
 //Class
 public class Keyboard extends JFrame {
 
-	// Declaration of buttons
+	//Declaration of utility buttons
 	private JButton resetBtn = new JButton("Reset");
 	private JButton bkspBtn = new JButton("Backspace");
 	private JButton spaceBtn = new JButton("Space");
 	private JButton enterBtn = new JButton("Enter");
 
+	//Declaration of labels
 	private JLabel Line1 = new JLabel("");
 	private JLabel Line2 = new JLabel("");
 	private JLabel Line3 = new JLabel("");
 	private JLabel Line4 = new JLabel("");
 
+	//Declaration of panel
 	private JPanel keyboardPanel = new JPanel();
 
 	// Constructor
@@ -24,10 +26,12 @@ public class Keyboard extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("Digital Typewriter");
 
+		//Gives keyboardPanel color and size
 		keyboardPanel.setBackground(Color.WHITE);
 		keyboardPanel.setPreferredSize(new Dimension(625, 325));
 		keyboardPanel.setLayout(null);
 
+		//
 		ButtonListener spy = new ButtonListener();
 
 		bkspBtn.addActionListener(spy);
@@ -58,6 +62,7 @@ public class Keyboard extends JFrame {
 		spaceBtn.setBackground(Color.DARK_GRAY);
 		spaceBtn.setForeground(Color.WHITE);
 
+		//Sets the bounds of where the output text will go
 		Line1.setBounds(5, 5, 605, 10);
 		Line2.setBounds(5, 20, 605, 10);
 		Line3.setBounds(5, 35, 605, 10);
@@ -106,6 +111,7 @@ public class Keyboard extends JFrame {
 
 		}
 
+		//Adds the components all the components of the keyboard and output to the panel
 		keyboardPanel.add(Line1);
 		keyboardPanel.add(Line2);
 		keyboardPanel.add(Line3);
@@ -123,6 +129,7 @@ public class Keyboard extends JFrame {
 	public void display() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				//creates a window using the panel created above 
 				JFrame frame1 = new JFrame("Digitial Typewriter");
 				frame1.getContentPane().add(keyboardPanel);
 				frame1.setSize(keyboardPanel.getSize());
@@ -136,16 +143,19 @@ public class Keyboard extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 
 			if (e.getSource().equals(resetBtn)) {
+				//clears all text output lines
 				Line1.setText("");
 				Line2.setText("");
 				Line3.setText("");
 				Line4.setText("");
 
 			} else if (e.getSource().equals(spaceBtn)) {
+				//adds a space to the text output
 				String currentOut = Line4.getText();
 				Line4.setText(currentOut + " ");
 
 			} else if (e.getSource().equals(enterBtn)) {
+				//moves all the text up one line (label)
 				String line2Out = Line2.getText();
 				String line3Out = Line3.getText();
 				String line4Out = Line4.getText();
@@ -156,12 +166,14 @@ public class Keyboard extends JFrame {
 				Line4.setText("");
 
 			} else if (e.getSource().equals(bkspBtn)) {
+				//deletes the last character typed
 				String currentOut = Line4.getText();
 				StringBuilder Str = new StringBuilder(currentOut);
 				Str.deleteCharAt(currentOut.length() - 1);
 				Line4.setText(Str.toString());
 
 			} else {
+				//types the letters/numbers
 				JButton b = (JButton) e.getSource();
 				String text = b.getText();
 				String currentOut = Line4.getText();
