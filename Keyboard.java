@@ -12,6 +12,37 @@ public class Keyboard extends JFrame {
 	private JButton spaceBtn = new JButton("Space");
 	private JButton enterBtn = new JButton("Enter");
 
+	//Declaration of letter buttons
+/*	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+	private JButton qLetterKey = new JButton("Q");
+*/
+	private JButton [] letters = new JButton{"Q","W","E","R","T","Y","U","I","O","P","A","S","D",
+						 "F","G","H","J","K","L","Z","X","C","V","B","N","M"};
+
 	//Declaration of labels
 	private JLabel Line1 = new JLabel("");
 	private JLabel Line2 = new JLabel("");
@@ -69,7 +100,7 @@ public class Keyboard extends JFrame {
 		Line4.setBounds(5, 50, 605, 10);
 
 		// letter button declaration for loop
-		for (int i = 0; i < 26; i++) {
+/*		for (int i = 0; i < 26; i++) {
 			char ch = (char) (i + 65);
 			String letter = ch + "";
 			JButton letterKey = new JButton(letter);
@@ -96,7 +127,32 @@ public class Keyboard extends JFrame {
 			letterKey.addActionListener(spy);
 			keyboardPanel.add(letterKey);
 		}
+*/
+		for (int i = 0; letter.length() < 26; i++){
+			if (i <= 9) {
+				letterKey.setBounds(5 + (i * 50), 120, 50, 50);
+				letterKey.setBorder(new LineBorder(Color.BLACK));
+				letterKey.setBackground(Color.DARK_GRAY);
+				letterKey.setForeground(Color.WHITE);
 
+			} else if ((i > 9) && (i <= 19)) {
+				letterKey.setBounds(5 + ((i - 10) * 50), 175, 50, 50);
+				letterKey.setBorder(new LineBorder(Color.BLACK));
+				letterKey.setBackground(Color.DARK_GRAY);
+				letterKey.setForeground(Color.WHITE);
+
+			} else if ((i > 19)) {
+				letterKey.setBounds(5 + ((i - 20) * 50), 230, 50, 50);
+				letterKey.setBorder(new LineBorder(Color.BLACK));
+				letterKey.setBackground(Color.DARK_GRAY);
+				letterKey.setForeground(Color.WHITE);
+
+			} 
+
+			letterKey.addActionListener(spy);
+			keyboardPanel.add(letterKey);
+		}
+		
 		// number button declaration for loop
 		for (int i = 0; i < 10; i++) {
 			int num = (i + 0);
