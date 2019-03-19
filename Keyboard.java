@@ -1,55 +1,24 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.Ellipse2D;
 
 //Class
 public class Keyboard extends JFrame {
 
-	//Declaration of utility buttons
+	// Declaration of buttons
 	private JButton resetBtn = new JButton("Reset");
 	private JButton bkspBtn = new JButton("Backspace");
 	private JButton spaceBtn = new JButton("Space");
 	private JButton enterBtn = new JButton("Enter");
 
-	//Declaration of letter buttons
-/*	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-	private JButton qLetterKey = new JButton("Q");
-*/
-	private JButton [] letters = new JButton{"Q","W","E","R","T","Y","U","I","O","P","A","S","D",
-						 "F","G","H","J","K","L","Z","X","C","V","B","N","M"};
-
-	//Declaration of labels
 	private JLabel Line1 = new JLabel("");
 	private JLabel Line2 = new JLabel("");
 	private JLabel Line3 = new JLabel("");
 	private JLabel Line4 = new JLabel("");
 
-	//Declaration of panel
 	private JPanel keyboardPanel = new JPanel();
 
 	// Constructor
@@ -57,12 +26,40 @@ public class Keyboard extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("Digital Typewriter");
 
-		//Gives keyboardPanel color and size
+		// Declares letters array in "QWERTY" order
+		RoundButton letters[] = new RoundButton[26];
+
+		letters[0] = new RoundButton("Q");
+		letters[1] = new RoundButton("W");
+		letters[2] = new RoundButton("E");
+		letters[3] = new RoundButton("R");
+		letters[4] = new RoundButton("T");
+		letters[5] = new RoundButton("Y");
+		letters[6] = new RoundButton("U");
+		letters[7] = new RoundButton("I");
+		letters[8] = new RoundButton("O");
+		letters[9] = new RoundButton("P");
+		letters[10] = new RoundButton("A");
+		letters[11] = new RoundButton("S");
+		letters[12] = new RoundButton("D");
+		letters[13] = new RoundButton("F");
+		letters[14] = new RoundButton("G");
+		letters[15] = new RoundButton("H");
+		letters[16] = new RoundButton("J");
+		letters[17] = new RoundButton("K");
+		letters[18] = new RoundButton("L");
+		letters[19] = new RoundButton("Z");
+		letters[20] = new RoundButton("X");
+		letters[21] = new RoundButton("C");
+		letters[22] = new RoundButton("V");
+		letters[23] = new RoundButton("B");
+		letters[24] = new RoundButton("N");
+		letters[25] = new RoundButton("M");
+
 		keyboardPanel.setBackground(Color.WHITE);
-		keyboardPanel.setPreferredSize(new Dimension(625, 325));
+		keyboardPanel.setPreferredSize(new Dimension(1245, 575));
 		keyboardPanel.setLayout(null);
 
-		//
 		ButtonListener spy = new ButtonListener();
 
 		bkspBtn.addActionListener(spy);
@@ -70,95 +67,71 @@ public class Keyboard extends JFrame {
 		resetBtn.addActionListener(spy);
 		enterBtn.addActionListener(spy);
 
+		// Btn.setBounds(x, y, width, height);
 		// sets utility buttons size and position
-		resetBtn.setBounds(505, 65, 100, 50);
-		bkspBtn.setBounds(505, 120, 100, 50);
-		enterBtn.setBounds(505, 175, 100, 50);
-		spaceBtn.setBounds(305, 230, 300, 50);
+		resetBtn.setBounds(1010, 65, 200, 100);
+		bkspBtn.setBounds(1010, 175, 200, 100);
+		enterBtn.setBounds(1010, 285, 200, 100);
+		spaceBtn.setBounds(610, 395, 600, 100);
 
 		// sets utility buttons color
 		resetBtn.setBorder(new LineBorder(Color.BLACK));
+		resetBtn.setBorder(new OvalBorder(50,50));
 		resetBtn.setBackground(Color.DARK_GRAY);
 		resetBtn.setForeground(Color.WHITE);
 
 		bkspBtn.setBorder(new LineBorder(Color.BLACK));
+		bkspBtn.setBorder(new OvalBorder(50,50));
 		bkspBtn.setBackground(Color.DARK_GRAY);
 		bkspBtn.setForeground(Color.WHITE);
 
 		enterBtn.setBorder(new LineBorder(Color.BLACK));
+		enterBtn.setBorder(new OvalBorder(50,50));
 		enterBtn.setBackground(Color.DARK_GRAY);
 		enterBtn.setForeground(Color.WHITE);
 
 		spaceBtn.setBorder(new LineBorder(Color.BLACK));
+		spaceBtn.setBorder(new OvalBorder(50,50));
 		spaceBtn.setBackground(Color.DARK_GRAY);
 		spaceBtn.setForeground(Color.WHITE);
 
-		//Sets the bounds of where the output text will go
 		Line1.setBounds(5, 5, 605, 10);
 		Line2.setBounds(5, 20, 605, 10);
 		Line3.setBounds(5, 35, 605, 10);
 		Line4.setBounds(5, 50, 605, 10);
 
-		// letter button declaration for loop
-/*		for (int i = 0; i < 26; i++) {
-			char ch = (char) (i + 65);
-			String letter = ch + "";
-			JButton letterKey = new JButton(letter);
+		// Sets bounds and colors for letter buttons
+		for (int i = 0; i < letters.length; i++) {
 			if (i <= 9) {
-				letterKey.setBounds(5 + (i * 50), 120, 50, 50);
-				letterKey.setBorder(new LineBorder(Color.BLACK));
-				letterKey.setBackground(Color.DARK_GRAY);
-				letterKey.setForeground(Color.WHITE);
+				letters[i].setBounds(10 + (i * 100), 175, 100, 100);
+				letters[i].setBorder(new LineBorder(Color.BLACK));
+				letters[i].setBackground(Color.DARK_GRAY);
+				letters[i].setForeground(Color.WHITE);
 
 			} else if ((i > 9) && (i <= 19)) {
-				letterKey.setBounds(5 + ((i - 10) * 50), 175, 50, 50);
-				letterKey.setBorder(new LineBorder(Color.BLACK));
-				letterKey.setBackground(Color.DARK_GRAY);
-				letterKey.setForeground(Color.WHITE);
+				letters[i].setBounds(10 + ((i - 10) * 100), 285, 100, 100);
+				letters[i].setBorder(new LineBorder(Color.BLACK));
+				letters[i].setBackground(Color.DARK_GRAY);
+				letters[i].setForeground(Color.WHITE);
 
 			} else if ((i > 19)) {
-				letterKey.setBounds(5 + ((i - 20) * 50), 230, 50, 50);
-				letterKey.setBorder(new LineBorder(Color.BLACK));
-				letterKey.setBackground(Color.DARK_GRAY);
-				letterKey.setForeground(Color.WHITE);
+				letters[i].setBounds(10 + ((i - 20) * 100), 395, 100, 100);
+				letters[i].setBorder(new LineBorder(Color.BLACK));
+				letters[i].setBackground(Color.DARK_GRAY);
+				letters[i].setForeground(Color.WHITE);
 
-			} 
+			}
 
-			letterKey.addActionListener(spy);
-			keyboardPanel.add(letterKey);
+			letters[i].addActionListener(spy);
+			keyboardPanel.add(letters[i]);
 		}
-*/
-		for (int i = 0; letter.length() < 26; i++){
-			if (i <= 9) {
-				letterKey.setBounds(5 + (i * 50), 120, 50, 50);
-				letterKey.setBorder(new LineBorder(Color.BLACK));
-				letterKey.setBackground(Color.DARK_GRAY);
-				letterKey.setForeground(Color.WHITE);
 
-			} else if ((i > 9) && (i <= 19)) {
-				letterKey.setBounds(5 + ((i - 10) * 50), 175, 50, 50);
-				letterKey.setBorder(new LineBorder(Color.BLACK));
-				letterKey.setBackground(Color.DARK_GRAY);
-				letterKey.setForeground(Color.WHITE);
-
-			} else if ((i > 19)) {
-				letterKey.setBounds(5 + ((i - 20) * 50), 230, 50, 50);
-				letterKey.setBorder(new LineBorder(Color.BLACK));
-				letterKey.setBackground(Color.DARK_GRAY);
-				letterKey.setForeground(Color.WHITE);
-
-			} 
-
-			letterKey.addActionListener(spy);
-			keyboardPanel.add(letterKey);
-		}
-		
 		// number button declaration for loop
 		for (int i = 0; i < 10; i++) {
 			int num = (i + 0);
 			String number = num + "";
-			JButton numKey = new JButton(number);
-			numKey.setBounds(5 + (i * 50), 65, 50, 50);
+			RoundButton numKey = new RoundButton(number);
+			numKey.setBounds(10 + (i * 100), 65, 100, 100);
 			numKey.setBorder(new LineBorder(Color.BLACK));
 			numKey.setBackground(Color.DARK_GRAY);
 			numKey.setForeground(Color.WHITE);
@@ -167,7 +140,6 @@ public class Keyboard extends JFrame {
 
 		}
 
-		//Adds the components all the components of the keyboard and output to the panel
 		keyboardPanel.add(Line1);
 		keyboardPanel.add(Line2);
 		keyboardPanel.add(Line3);
@@ -182,10 +154,98 @@ public class Keyboard extends JFrame {
 		pack();
 	}
 
+	public class OvalBorder implements Border {
+
+		protected int m_w = 6;
+		protected int m_h = 6;
+		protected Color m_topColor = Color.white;
+		protected Color m_bottomColor = Color.gray;
+
+		public OvalBorder() {
+			m_w = 6;
+			m_h = 6;
+		}
+
+		public OvalBorder(int w, int h) {
+			m_w = w;
+			m_h = h;
+		}
+
+		public OvalBorder(int w, int h, Color topColor, Color bottomColor) {
+			m_w = w;
+			m_h = h;
+			m_topColor = topColor;
+			m_bottomColor = bottomColor;
+		}
+
+		public Insets getBorderInsets(Component c) {
+			return new Insets(m_h, m_w, m_h, m_w);
+		}
+
+		public boolean isBorderOpaque() {
+			return true;
+		}
+
+		public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
+			w--;
+			h--;
+			g.setColor(m_topColor);
+			g.drawLine(x, y + h - m_h, x, y + m_h);
+			g.drawArc(x, y, 2 * m_w, 2 * m_h, 180, -90);
+			g.drawLine(x + m_w, y, x + w - m_w, y);
+			g.drawArc(x + w - 2 * m_w, y, 2 * m_w, 2 * m_h, 90, -90);
+
+			g.setColor(m_bottomColor);
+			g.drawLine(x + w, y + m_h, x + w, y + h - m_h);
+			g.drawArc(x + w - 2 * m_w, y + h - 2 * m_h, 2 * m_w, 2 * m_h, 0, -90);
+			g.drawLine(x + m_w, y + h, x + w - m_w, y + h);
+			g.drawArc(x, y + h - 2 * m_h, 2 * m_w, 2 * m_h, -90, -90);
+		}
+	}
+
+	class RoundButton extends JButton {
+		// for mouse detection purposes
+		Shape shape;
+
+		public RoundButton(String label) {
+			super(label);
+			// allows us to paint a round background
+			// if true, it would be rectangular
+			setContentAreaFilled(false);
+		}
+
+		protected void paintComponent(Graphics g) {
+			// if the button is pressed and ready to be released
+			if (getModel().isArmed()) {
+				g.setColor(Color.lightGray);
+			} else {
+				g.setColor(getBackground());
+			}
+
+			g.fillOval(0, 0, getSize().width - 1, getSize().height - 1);
+
+			super.paintComponent(g);
+		}
+
+		// paint a round border as opposed to a rectangular one
+		protected void paintBorder(Graphics g) {
+			g.setColor(getForeground());
+			g.drawOval(0, 0, getSize().width - 1, getSize().height - 1);
+		}
+
+		// only clicks within the round shape should be accepted
+		public boolean contains(int x, int y) {
+			if (shape == null || !shape.getBounds().equals(getBounds())) {
+				shape = new Ellipse2D.Float(0, 0, getWidth(), getHeight());
+			}
+
+			return shape.contains(x, y);
+		}
+	}
+
 	public void display() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				//creates a window using the panel created above 
 				JFrame frame1 = new JFrame("Digitial Typewriter");
 				frame1.getContentPane().add(keyboardPanel);
 				frame1.setSize(keyboardPanel.getSize());
@@ -199,19 +259,16 @@ public class Keyboard extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 
 			if (e.getSource().equals(resetBtn)) {
-				//clears all text output lines
 				Line1.setText("");
 				Line2.setText("");
 				Line3.setText("");
 				Line4.setText("");
 
 			} else if (e.getSource().equals(spaceBtn)) {
-				//adds a space to the text output
 				String currentOut = Line4.getText();
 				Line4.setText(currentOut + " ");
 
 			} else if (e.getSource().equals(enterBtn)) {
-				//moves all the text up one line (label)
 				String line2Out = Line2.getText();
 				String line3Out = Line3.getText();
 				String line4Out = Line4.getText();
@@ -222,14 +279,12 @@ public class Keyboard extends JFrame {
 				Line4.setText("");
 
 			} else if (e.getSource().equals(bkspBtn)) {
-				//deletes the last character typed
 				String currentOut = Line4.getText();
 				StringBuilder Str = new StringBuilder(currentOut);
 				Str.deleteCharAt(currentOut.length() - 1);
 				Line4.setText(Str.toString());
 
 			} else {
-				//types the letters/numbers
 				JButton b = (JButton) e.getSource();
 				String text = b.getText();
 				String currentOut = Line4.getText();
