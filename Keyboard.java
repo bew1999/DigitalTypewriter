@@ -10,7 +10,7 @@ public class Keyboard extends JFrame {
 
 	// Declaration of buttons
 	private JButton resetBtn = new JButton("Reset");
-	private JButton bkspBtn = new JButton("Backspace");
+	private JButton bkspBtn = new JButton("Delete");
 	private JButton spaceBtn = new JButton("Space");
 	private JButton enterBtn = new JButton("Enter");
 
@@ -18,6 +18,8 @@ public class Keyboard extends JFrame {
 	private JLabel Line2 = new JLabel("");
 	private JLabel Line3 = new JLabel("");
 	private JLabel Line4 = new JLabel("");
+	private JLabel Line5 = new JLabel("");
+	private JLabel Line6 = new JLabel("");
 
 	private JPanel keyboardPanel = new JPanel();
 
@@ -57,7 +59,7 @@ public class Keyboard extends JFrame {
 		letters[25] = new RoundButton("M");
 
 		keyboardPanel.setBackground(Color.WHITE);
-		keyboardPanel.setPreferredSize(new Dimension(625, 325));
+		keyboardPanel.setPreferredSize(new Dimension(635, 385));
 		keyboardPanel.setLayout(null);
 
 		ButtonListener spy = new ButtonListener();
@@ -69,53 +71,55 @@ public class Keyboard extends JFrame {
 
 		// btn.setBounds(x, y, width, height);
 		// sets utility buttons size and position
-		resetBtn.setBounds(505, 65, 100, 50);
-		bkspBtn.setBounds(505, 120, 100, 50);
-		enterBtn.setBounds(480, 175, 100, 50);
-		spaceBtn.setBounds(380, 230, 200, 50);
+		resetBtn.setBounds(505, 95, 100, 50);
+		bkspBtn.setBounds(505, 150, 100, 50);
+		enterBtn.setBounds(480, 205, 100, 50);
+		spaceBtn.setBounds(380, 260, 200, 50);
 
 		// sets utility buttons color
 		resetBtn.setBorder(new LineBorder(Color.BLACK));
-		resetBtn.setBorder(new OvalBorder(25,25));
+		resetBtn.setBorder(new OvalBorder(25, 25));
 		resetBtn.setBackground(Color.DARK_GRAY);
 		resetBtn.setForeground(Color.WHITE);
 
 		bkspBtn.setBorder(new LineBorder(Color.BLACK));
-		bkspBtn.setBorder(new OvalBorder(25,25));
+		bkspBtn.setBorder(new OvalBorder(25, 25));
 		bkspBtn.setBackground(Color.DARK_GRAY);
 		bkspBtn.setForeground(Color.WHITE);
 
 		enterBtn.setBorder(new LineBorder(Color.BLACK));
-		enterBtn.setBorder(new OvalBorder(25,25));
+		enterBtn.setBorder(new OvalBorder(25, 25));
 		enterBtn.setBackground(Color.DARK_GRAY);
 		enterBtn.setForeground(Color.WHITE);
 
 		spaceBtn.setBorder(new LineBorder(Color.BLACK));
-		spaceBtn.setBorder(new OvalBorder(25,25));
+		spaceBtn.setBorder(new OvalBorder(25, 25));
 		spaceBtn.setBackground(Color.DARK_GRAY);
 		spaceBtn.setForeground(Color.WHITE);
 
-		Line1.setBounds(5, 5, 605, 10);
-		Line2.setBounds(5, 20, 605, 10);
-		Line3.setBounds(5, 35, 605, 10);
-		Line4.setBounds(5, 50, 605, 10);
+		Line1.setBounds(5, 5, 630, 10);
+		Line2.setBounds(5, 20, 630, 10);
+		Line3.setBounds(5, 35, 630, 10);
+		Line4.setBounds(5, 50, 630, 10);
+		Line5.setBounds(5, 65, 630, 10);
+		Line6.setBounds(5, 80, 630, 10);
 
 		// Sets bounds and colors for letter buttons
 		for (int i = 0; i < letters.length; i++) {
 			if (i <= 9) {
-				letters[i].setBounds(5 + (i * 50), 120, 50, 50);
+				letters[i].setBounds(5 + (i * 50), 150, 50, 50);
 				letters[i].setBorder(new LineBorder(Color.BLACK));
 				letters[i].setBackground(Color.DARK_GRAY);
 				letters[i].setForeground(Color.WHITE);
 
 			} else if ((i > 9) && (i <= 18)) {
-				letters[i].setBounds(30 + ((i - 10) * 50), 175, 50, 50);
+				letters[i].setBounds(30 + ((i - 10) * 50), 205, 50, 50);
 				letters[i].setBorder(new LineBorder(Color.BLACK));
 				letters[i].setBackground(Color.DARK_GRAY);
 				letters[i].setForeground(Color.WHITE);
 
-			} else if ((i > 18)) { // && (i <= 22)
-				letters[i].setBounds(30 + ((i - 19) * 50), 230, 50, 50);
+			} else if ((i > 18)) {
+				letters[i].setBounds(30 + ((i - 19) * 50), 260, 50, 50);
 				letters[i].setBorder(new LineBorder(Color.BLACK));
 				letters[i].setBackground(Color.DARK_GRAY);
 				letters[i].setForeground(Color.WHITE);
@@ -131,7 +135,7 @@ public class Keyboard extends JFrame {
 			int num = (i + 0);
 			String number = num + "";
 			RoundButton numKey = new RoundButton(number);
-			numKey.setBounds(5 + (i * 50), 65, 50, 50);
+			numKey.setBounds(5 + (i * 50), 95, 50, 50);
 			numKey.setBorder(new LineBorder(Color.BLACK));
 			numKey.setBackground(Color.DARK_GRAY);
 			numKey.setForeground(Color.WHITE);
@@ -144,6 +148,8 @@ public class Keyboard extends JFrame {
 		keyboardPanel.add(Line2);
 		keyboardPanel.add(Line3);
 		keyboardPanel.add(Line4);
+		keyboardPanel.add(Line5);
+		keyboardPanel.add(Line6);
 		keyboardPanel.add(resetBtn);
 		keyboardPanel.add(bkspBtn);
 		keyboardPanel.add(enterBtn);
@@ -263,32 +269,38 @@ public class Keyboard extends JFrame {
 				Line2.setText("");
 				Line3.setText("");
 				Line4.setText("");
+				Line5.setText("");
+				Line6.setText("");
 
 			} else if (e.getSource().equals(spaceBtn)) {
-				String currentOut = Line4.getText();
-				Line4.setText(currentOut + " ");
+				String currentOut = Line6.getText();
+				Line6.setText(currentOut + " ");
 
 			} else if (e.getSource().equals(enterBtn)) {
 				String line2Out = Line2.getText();
 				String line3Out = Line3.getText();
 				String line4Out = Line4.getText();
+				String line5Out = Line5.getText();
+				String line6Out = Line6.getText();
 
 				Line1.setText(line2Out);
 				Line2.setText(line3Out);
 				Line3.setText(line4Out);
-				Line4.setText("");
+				Line4.setText(line5Out);
+				Line5.setText(line6Out);
+				Line6.setText("");
 
 			} else if (e.getSource().equals(bkspBtn)) {
-				String currentOut = Line4.getText();
+				String currentOut = Line6.getText();
 				StringBuilder Str = new StringBuilder(currentOut);
 				Str.deleteCharAt(currentOut.length() - 1);
-				Line4.setText(Str.toString());
+				Line6.setText(Str.toString());
 
 			} else {
 				JButton b = (JButton) e.getSource();
 				String text = b.getText();
-				String currentOut = Line4.getText();
-				Line4.setText(currentOut + text);
+				String currentOut = Line6.getText();
+				Line6.setText(currentOut + text);
 
 			}
 		}
