@@ -57,7 +57,7 @@ public class Keyboard extends JFrame {
 		letters[25] = new RoundButton("M");
 
 		keyboardPanel.setBackground(Color.WHITE);
-		keyboardPanel.setPreferredSize(new Dimension(1245, 575));
+		keyboardPanel.setPreferredSize(new Dimension(625, 325));
 		keyboardPanel.setLayout(null);
 
 		ButtonListener spy = new ButtonListener();
@@ -67,31 +67,31 @@ public class Keyboard extends JFrame {
 		resetBtn.addActionListener(spy);
 		enterBtn.addActionListener(spy);
 
-		// Btn.setBounds(x, y, width, height);
+		// btn.setBounds(x, y, width, height);
 		// sets utility buttons size and position
-		resetBtn.setBounds(1010, 65, 200, 100);
-		bkspBtn.setBounds(1010, 175, 200, 100);
-		enterBtn.setBounds(1010, 285, 200, 100);
-		spaceBtn.setBounds(610, 395, 600, 100);
+		resetBtn.setBounds(505, 65, 100, 50);
+		bkspBtn.setBounds(505, 120, 100, 50);
+		enterBtn.setBounds(480, 175, 100, 50);
+		spaceBtn.setBounds(380, 230, 200, 50);
 
 		// sets utility buttons color
 		resetBtn.setBorder(new LineBorder(Color.BLACK));
-		resetBtn.setBorder(new OvalBorder(50,50));
+		resetBtn.setBorder(new OvalBorder(25,25));
 		resetBtn.setBackground(Color.DARK_GRAY);
 		resetBtn.setForeground(Color.WHITE);
 
 		bkspBtn.setBorder(new LineBorder(Color.BLACK));
-		bkspBtn.setBorder(new OvalBorder(50,50));
+		bkspBtn.setBorder(new OvalBorder(25,25));
 		bkspBtn.setBackground(Color.DARK_GRAY);
 		bkspBtn.setForeground(Color.WHITE);
 
 		enterBtn.setBorder(new LineBorder(Color.BLACK));
-		enterBtn.setBorder(new OvalBorder(50,50));
+		enterBtn.setBorder(new OvalBorder(25,25));
 		enterBtn.setBackground(Color.DARK_GRAY);
 		enterBtn.setForeground(Color.WHITE);
 
 		spaceBtn.setBorder(new LineBorder(Color.BLACK));
-		spaceBtn.setBorder(new OvalBorder(50,50));
+		spaceBtn.setBorder(new OvalBorder(25,25));
 		spaceBtn.setBackground(Color.DARK_GRAY);
 		spaceBtn.setForeground(Color.WHITE);
 
@@ -103,19 +103,19 @@ public class Keyboard extends JFrame {
 		// Sets bounds and colors for letter buttons
 		for (int i = 0; i < letters.length; i++) {
 			if (i <= 9) {
-				letters[i].setBounds(10 + (i * 100), 175, 100, 100);
+				letters[i].setBounds(5 + (i * 50), 120, 50, 50);
 				letters[i].setBorder(new LineBorder(Color.BLACK));
 				letters[i].setBackground(Color.DARK_GRAY);
 				letters[i].setForeground(Color.WHITE);
 
-			} else if ((i > 9) && (i <= 19)) {
-				letters[i].setBounds(10 + ((i - 10) * 100), 285, 100, 100);
+			} else if ((i > 9) && (i <= 18)) {
+				letters[i].setBounds(30 + ((i - 10) * 50), 175, 50, 50);
 				letters[i].setBorder(new LineBorder(Color.BLACK));
 				letters[i].setBackground(Color.DARK_GRAY);
 				letters[i].setForeground(Color.WHITE);
 
-			} else if ((i > 19)) {
-				letters[i].setBounds(10 + ((i - 20) * 100), 395, 100, 100);
+			} else if ((i > 18)) { // && (i <= 22)
+				letters[i].setBounds(30 + ((i - 19) * 50), 230, 50, 50);
 				letters[i].setBorder(new LineBorder(Color.BLACK));
 				letters[i].setBackground(Color.DARK_GRAY);
 				letters[i].setForeground(Color.WHITE);
@@ -131,7 +131,7 @@ public class Keyboard extends JFrame {
 			int num = (i + 0);
 			String number = num + "";
 			RoundButton numKey = new RoundButton(number);
-			numKey.setBounds(10 + (i * 100), 65, 100, 100);
+			numKey.setBounds(5 + (i * 50), 65, 50, 50);
 			numKey.setBorder(new LineBorder(Color.BLACK));
 			numKey.setBackground(Color.DARK_GRAY);
 			numKey.setForeground(Color.WHITE);
