@@ -10,9 +10,10 @@ public class Keyboard extends JFrame {
 
 	// Declaration of buttons
 	private JButton resetBtn = new JButton("Reset");
-	private JButton bkspBtn = new JButton("Delete");
+	private JButton deleteBtn = new JButton("Delete");
 	private JButton spaceBtn = new JButton("Space");
 	private JButton enterBtn = new JButton("Enter");
+	private JButton capsBtn = new JButton("Caps");
 
 	private JLabel Line1 = new JLabel("");
 	private JLabel Line2 = new JLabel("");
@@ -22,6 +23,8 @@ public class Keyboard extends JFrame {
 	private JLabel Line6 = new JLabel("");
 
 	private JPanel keyboardPanel = new JPanel();
+
+	private boolean capsOn = false;
 
 	// Constructor
 	public Keyboard() {
@@ -58,23 +61,36 @@ public class Keyboard extends JFrame {
 		letters[24] = new RoundButton("N");
 		letters[25] = new RoundButton("M");
 
+		RoundButton symbols[] = new RoundButton[8];
+
+		symbols[0] = new RoundButton("-");
+		symbols[1] = new RoundButton("'");
+		symbols[2] = new RoundButton(":");
+		symbols[3] = new RoundButton(";");
+		symbols[4] = new RoundButton(".");
+		symbols[5] = new RoundButton(",");
+		symbols[6] = new RoundButton("?");
+		symbols[7] = new RoundButton("!");
+
 		keyboardPanel.setBackground(Color.WHITE);
-		keyboardPanel.setPreferredSize(new Dimension(635, 385));
+		keyboardPanel.setPreferredSize(new Dimension(635, 440));
 		keyboardPanel.setLayout(null);
 
 		ButtonListener spy = new ButtonListener();
 
-		bkspBtn.addActionListener(spy);
+		deleteBtn.addActionListener(spy);
 		spaceBtn.addActionListener(spy);
 		resetBtn.addActionListener(spy);
 		enterBtn.addActionListener(spy);
+		capsBtn.addActionListener(spy);
 
 		// btn.setBounds(x, y, width, height);
 		// sets utility buttons size and position
-		resetBtn.setBounds(505, 95, 100, 50);
-		bkspBtn.setBounds(505, 150, 100, 50);
-		enterBtn.setBounds(480, 205, 100, 50);
-		spaceBtn.setBounds(380, 260, 200, 50);
+		resetBtn.setBounds(80, 315, 100, 50);
+		deleteBtn.setBounds(5, 150, 100, 50);
+		enterBtn.setBounds(30, 205, 100, 50);
+		spaceBtn.setBounds(180, 315, 200, 50);
+		capsBtn.setBounds(30, 260, 100, 50);
 
 		// sets utility buttons color
 		resetBtn.setBorder(new LineBorder(Color.BLACK));
@@ -82,10 +98,10 @@ public class Keyboard extends JFrame {
 		resetBtn.setBackground(Color.DARK_GRAY);
 		resetBtn.setForeground(Color.WHITE);
 
-		bkspBtn.setBorder(new LineBorder(Color.BLACK));
-		bkspBtn.setBorder(new OvalBorder(25, 25));
-		bkspBtn.setBackground(Color.DARK_GRAY);
-		bkspBtn.setForeground(Color.WHITE);
+		deleteBtn.setBorder(new LineBorder(Color.BLACK));
+		deleteBtn.setBorder(new OvalBorder(25, 25));
+		deleteBtn.setBackground(Color.DARK_GRAY);
+		deleteBtn.setForeground(Color.WHITE);
 
 		enterBtn.setBorder(new LineBorder(Color.BLACK));
 		enterBtn.setBorder(new OvalBorder(25, 25));
@@ -97,6 +113,11 @@ public class Keyboard extends JFrame {
 		spaceBtn.setBackground(Color.DARK_GRAY);
 		spaceBtn.setForeground(Color.WHITE);
 
+		capsBtn.setBorder(new LineBorder(Color.BLACK));
+		capsBtn.setBorder(new OvalBorder(25, 25));
+		capsBtn.setBackground(Color.DARK_GRAY);
+		capsBtn.setForeground(Color.WHITE);
+
 		Line1.setBounds(5, 5, 630, 10);
 		Line2.setBounds(5, 20, 630, 10);
 		Line3.setBounds(5, 35, 630, 10);
@@ -107,19 +128,19 @@ public class Keyboard extends JFrame {
 		// Sets bounds and colors for letter buttons
 		for (int i = 0; i < letters.length; i++) {
 			if (i <= 9) {
-				letters[i].setBounds(5 + (i * 50), 150, 50, 50);
+				letters[i].setBounds(105 + (i * 50), 150, 50, 50);
 				letters[i].setBorder(new LineBorder(Color.BLACK));
 				letters[i].setBackground(Color.DARK_GRAY);
 				letters[i].setForeground(Color.WHITE);
 
 			} else if ((i > 9) && (i <= 18)) {
-				letters[i].setBounds(30 + ((i - 10) * 50), 205, 50, 50);
+				letters[i].setBounds(130 + ((i - 10) * 50), 205, 50, 50);
 				letters[i].setBorder(new LineBorder(Color.BLACK));
 				letters[i].setBackground(Color.DARK_GRAY);
 				letters[i].setForeground(Color.WHITE);
 
 			} else if ((i > 18)) {
-				letters[i].setBounds(30 + ((i - 19) * 50), 260, 50, 50);
+				letters[i].setBounds(130 + ((i - 19) * 50), 260, 50, 50);
 				letters[i].setBorder(new LineBorder(Color.BLACK));
 				letters[i].setBackground(Color.DARK_GRAY);
 				letters[i].setForeground(Color.WHITE);
@@ -144,6 +165,32 @@ public class Keyboard extends JFrame {
 
 		}
 
+		// symbol button declaration for loop
+		for (int i = 0; i < symbols.length; i++) {
+			if (i <= 1) {
+				symbols[i].setBounds(505 + (i * 50), 95, 50, 50);
+				symbols[i].setBorder(new LineBorder(Color.BLACK));
+				symbols[i].setBackground(Color.DARK_GRAY);
+				symbols[i].setForeground(Color.WHITE);
+
+			} else if ((i > 1) && (i <= 3)) {
+				symbols[i].setBounds(480 + ((i - 2) * 50), 260, 50, 50);
+				symbols[i].setBorder(new LineBorder(Color.BLACK));
+				symbols[i].setBackground(Color.DARK_GRAY);
+				symbols[i].setForeground(Color.WHITE);
+
+			} else if ((i > 3)) {
+				symbols[i].setBounds(380 + ((i - 4) * 50), 315, 50, 50);
+				symbols[i].setBorder(new LineBorder(Color.BLACK));
+				symbols[i].setBackground(Color.DARK_GRAY);
+				symbols[i].setForeground(Color.WHITE);
+
+			}
+
+			symbols[i].addActionListener(spy);
+			keyboardPanel.add(symbols[i]);
+		}
+
 		keyboardPanel.add(Line1);
 		keyboardPanel.add(Line2);
 		keyboardPanel.add(Line3);
@@ -151,9 +198,10 @@ public class Keyboard extends JFrame {
 		keyboardPanel.add(Line5);
 		keyboardPanel.add(Line6);
 		keyboardPanel.add(resetBtn);
-		keyboardPanel.add(bkspBtn);
+		keyboardPanel.add(deleteBtn);
 		keyboardPanel.add(enterBtn);
 		keyboardPanel.add(spaceBtn);
+		keyboardPanel.add(capsBtn);
 
 		getContentPane().add(keyboardPanel);
 
@@ -272,6 +320,13 @@ public class Keyboard extends JFrame {
 				Line5.setText("");
 				Line6.setText("");
 
+			} else if (e.getSource().equals(capsBtn)) {
+				if (capsOn) {
+					capsOn = false;
+				} else {
+					capsOn = true;
+				}
+
 			} else if (e.getSource().equals(spaceBtn)) {
 				String currentOut = Line6.getText();
 				Line6.setText(currentOut + " ");
@@ -290,17 +345,26 @@ public class Keyboard extends JFrame {
 				Line5.setText(line6Out);
 				Line6.setText("");
 
-			} else if (e.getSource().equals(bkspBtn)) {
+			} else if (e.getSource().equals(deleteBtn)) {
 				String currentOut = Line6.getText();
 				StringBuilder Str = new StringBuilder(currentOut);
 				Str.deleteCharAt(currentOut.length() - 1);
 				Line6.setText(Str.toString());
 
 			} else {
-				JButton b = (JButton) e.getSource();
-				String text = b.getText();
-				String currentOut = Line6.getText();
-				Line6.setText(currentOut + text);
+				if (capsOn) {
+					JButton b = (JButton) e.getSource();
+					String text = b.getText();
+					text = text.toUpperCase();
+					String currentOut = Line6.getText();
+					Line6.setText(currentOut + text);
+				} else {
+					JButton b = (JButton) e.getSource();
+					String text = b.getText();
+					text = text.toLowerCase();
+					String currentOut = Line6.getText();
+					Line6.setText(currentOut + text);
+				}
 
 			}
 		}
